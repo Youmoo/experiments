@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h3>监视元素的属性变化并予以反馈</h3>
+<input id="txtbox" type="text">
+<button onclick="toggle();">Toggle Enabled</button>
+<div id="result"></div>
+
+<script>
+    var txtbox = document.getElementById('txtbox');
+    var result = document.getElementById('result');
+
+    /* listener function using MutationObserver
+     see: https://developer.mozilla.org/en/docs/Web/API/MutationObserver */
+
+    function attachDisabledListener(element, callback) {
+        var observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                callback(mutation.oldValue !== "");
+            });
+        });
+        observer.observe(element, {
+            attributes: true,
+            attributeFilter: ['disabled'],
+            attributeOldValue: true
+        });
+    }
+
+    /* event for triggering a disabled change */
+
+    function toggle() {
+        txtbox.disabled = !txtbox.disabled;
+    }
+
+    /* callback handling disabled change */
+
+    function report(isDisabled) {
+        result.innerHTML = isDisabled ? "Disabled" : "Enabled";
+    }
+
+    /* */
+    attachDisabledListener(txtbox, report);
+</script>
+</body>
+</html>

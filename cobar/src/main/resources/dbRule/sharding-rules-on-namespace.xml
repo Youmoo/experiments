@@ -1,0 +1,22 @@
+<rules>
+    <rule>
+        <namespace>TbUserDao</namespace>
+        <!--
+               表达式如果不使用自定义路由规则函数,而是直接使用   taobaoId%2==0这种的话就不用在文件
+               中配置<property name="functionsMap">中了
+               *这里的userId是map或bean中的一个属性名
+        -->
+        <shardingExpression>hash.apply(userId) == 0</shardingExpression>
+        <shards>partition0</shards>
+    </rule>
+    <rule>
+        <namespace>TbUserDao</namespace>
+        <shardingExpression>hash.apply(userId) == 1</shardingExpression>
+        <shards>partition1</shards>
+    </rule>
+    <rule>
+        <namespace>TbUserDao</namespace>
+        <shardingExpression>hash.apply(userId) == 2</shardingExpression>
+        <shards>partition2</shards>
+    </rule>
+</rules>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p>
+    使用<b>websockectd</b>将标准输出/输入使用websockect访问
+    <br/><a href="https://github.com/joewalnes/websocketd/wiki/Ten-second-tutorial" target="_blank">10秒钟教程</a>
+</p>
+<script>
+    var ws = new WebSocket('ws://localhost:8080/');
+
+    ws.onmessage = function (event) {
+        console.log('Count is: ' + event.data);
+    };
+</script>
+
+</body>
+</html>

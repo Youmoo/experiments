@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.youmoo</groupId>
+    <artifactId>parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+    </properties>
+    <modules>
+        <module>netty</module>
+        <module>dubbo</module>
+        <module>spring-multi-datasource</module>
+        <module>nashorn</module>
+        <module>spring</module>
+        <module>spark</module>
+        <module>spring-boot</module>
+        <module>hystrix</module>
+        <module>retrofit</module>
+        <module>common</module>
+        <module>hazelcast</module>
+        <module>cobar</module>
+        <module>spring-pom</module>
+        <module>undertow</module>
+    </modules>
+
+    <dependencies>
+        <!--日志打印-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+        <!--单元测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.1.41</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

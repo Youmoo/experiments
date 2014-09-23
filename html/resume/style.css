@@ -1,0 +1,17 @@
+body {
+    font-family: 'monospace', 'microsoft yahei';
+    width: 80%;
+}
+
+p {
+    text-indent: 2em;
+    margin: 0;
+}
+
+li a {
+    margin-right: 1em;
+}
+
+.stress {
+    color: rgb(218, 41, 72);
+}

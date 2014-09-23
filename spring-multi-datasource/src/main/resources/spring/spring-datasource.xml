@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans default-autowire="byName"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+    <bean id="placeholderConfig"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:/dev.properties</value>
+        </property>
+    </bean>
+    <bean id="dataSourceTargetA" class="${jdbc.driverClassName}" init-method="init"
+          destroy-method="close">
+        <property name="url" value="${jdbc.url1}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="filters" value="config,stat,mergeStat"/>
+        <property name="connectionProperties" value="config.decrypt=true"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="${jdbc.maxPoolPreparedStatementPerConnectionSize}"/>
+    </bean>
+    <bean id="dataSourceA" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource" ref="dataSourceTargetA"/>
+    </bean>
+
+    <!--  iBatis SQL map定义 -->
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation">
+            <value>classpath:/sqlmap-config.xml</value>
+        </property>
+    </bean>
+    <bean id="baseDao" abstract="true" class="dao.BaseDao">
+        <property name="dataSource">
+            <ref bean="dynamicDataSource"/>
+        </property>
+        <property name="sqlMapClient">
+            <ref local="sqlMapClient"/>
+        </property>
+    </bean>
+
+    <aop:aspectj-autoproxy/>
+    <aop:config>
+        <aop:advisor advice-ref="dsAspect" pointcut="execution(* *..*DaoImpl.insert*(..)))"></aop:advisor>
+    </aop:config>
+</beans>
