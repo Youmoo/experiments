@@ -31,6 +31,16 @@ public class ObjectFactory {
     }
 
     /**
+     * 获取一个ArrayList实例
+     *
+     * @param <T> 集合元素类型
+     * @return 一个ArrayList实例
+     */
+    public static <T> List<T> list(int size) {
+        return new ArrayList<T>(size);
+    }
+
+    /**
      * 获取一个HashSet实例
      *
      * @param <T> 集合元素类型

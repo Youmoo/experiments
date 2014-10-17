@@ -5,9 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import exception.DaoException;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * @author youmoo
@@ -52,5 +50,33 @@ public class Dao {
 
         HikariDataSource ds = new HikariDataSource(config);
         return ds;
+    }
+
+    /**
+     * 设置参数值
+     */
+    public static void setValues(PreparedStatement preparedStatement, Object... values) throws SQLException {
+        for (int i = 0; i < values.length; i++) {
+            preparedStatement.setObject(i + 1, values[i]);
+        }
+    }
+
+    /**
+     * 设置参数值
+     */
+    protected void fillStatement(PreparedStatement stmt, Object[] params)
+            throws SQLException {
+
+        if (params == null) {
+            return;
+        }
+
+        for (int i = 0; i < params.length; i++) {
+            if (params[i] != null) {
+                stmt.setObject(i + 1, params[i]);
+            } else {
+                stmt.setNull(i + 1, Types.OTHER);
+            }
+        }
     }
 }

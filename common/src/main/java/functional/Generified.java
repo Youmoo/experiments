@@ -14,7 +14,7 @@ import java.util.*;
 import static util.NumberUtils.*;
 
 /**
- * 仿js中的Array.prototype
+ * 函数式，仿js中的Array.prototype并将一些常用操作泛化
  *
  * @autor youmoo
  * @since 2014-04-15 下午8:19
@@ -77,14 +77,32 @@ public class Generified {
     public static <E> Map<String, List<E>> group(Iterable<E> iterable, KeyGenerator<E> keyGenerator) {
         Map<String, List<E>> result = ObjectFactory.map();
 
-        for (E e : iterable) {
-            String key = keyGenerator.generate(e);
-            List<E> prev = result.get(key);
+        if (iterable != null) {
+            for (E e : iterable) {
+                String key = keyGenerator.generate(e);
+                List<E> prev = result.get(key);
+                if (prev == null) {
+                    prev = ObjectFactory.list();
+                    result.put(key, prev);
+                }
+                prev.add(e);
+            }
+        }
+
+        return result;
+    }
+
+    public static <K, V> Map<K, List<V>> group(Iterable<V> iterable, KeyFactory<K, V> keyFactory) {
+        Map<K, List<V>> result = ObjectFactory.map();
+
+        for (V value : iterable) {
+            K key = keyFactory.makeKey(value);
+            List<V> prev = result.get(key);
             if (prev == null) {
                 prev = ObjectFactory.list();
                 result.put(key, prev);
             }
-            prev.add(e);
+            prev.add(value);
         }
 
         return result;
@@ -108,18 +126,6 @@ public class Generified {
     }
 
     /**
-     * 将Action执行amount次
-     *
-     * @param amount
-     * @param action
-     */
-    public static void loop(int amount, Action<Void> action) {
-        while (amount-- != 0) {
-            action.act(null);
-        }
-    }
-
-    /**
      * 将集合元素进行转型后分组
      */
     public static <R, E> Map<String, List<R>> group(Iterable<E> iterable, KeyValueGenerator<R, E> keyValueGenerator) {
@@ -140,6 +146,7 @@ public class Generified {
         return result;
     }
 
+
     /**
      * 将集合元素进行分组汇总操作
      * 示例：
@@ -153,6 +160,33 @@ public class Generified {
         for (Map.Entry<String, List<E>> entry : grouped.entrySet()) {
             E summed = sumValues(entry.getValue());/*再对每组总总值*/
             result.put(entry.getKey(), summed);
+        }
+
+        return result;
+    }
+
+    public static <K, V> Map<K, V> groupAndSum(Iterable<V> iterable, KeyFactory<K, V> keyFactory) {
+        Map<K, V> result = ObjectFactory.map();
+
+        Map<K, List<V>> grouped = group(iterable, keyFactory);/*先分组*/
+
+        for (Map.Entry<K, List<V>> entry : grouped.entrySet()) {
+            V summed = sumValues(entry.getValue());/*再对每组总总值*/
+            result.put(entry.getKey(), summed);
+        }
+
+        return result;
+    }
+
+    public static <K, V> List<V> groupAndSumAsList(Iterable<V> iterable, KeyFactory<K, V> keyFactory) {
+
+        Map<K, List<V>> grouped = group(iterable, keyFactory);/*先分组*/
+        List<V> result = ObjectFactory.list(grouped.size());
+
+
+        for (Map.Entry<K, List<V>> entry : grouped.entrySet()) {
+            V summed = sumValues(entry.getValue());/*再对每组总总值*/
+            result.add(summed);
         }
 
         return result;
@@ -394,6 +428,14 @@ public class Generified {
 
     }
 
+    public static void measure(String name, int amount, Action action) {
+        long time = -System.currentTimeMillis();
+        while (amount-- != 0) {
+            action.act(null);
+        }
+        System.out.println(name + "--耗时:" + (time + System.currentTimeMillis()));
+    }
+
     /*key生成器*/
     public static interface KeyGenerator<E> {
         public String generate(E e);
@@ -434,5 +476,10 @@ public class Generified {
     /*元素操作*/
     public static interface Action<E> {
         public void act(E e);
+    }
+
+    /*元素生成工厂*/
+    public static interface Generator<E> {
+        public E produce();
     }
 }

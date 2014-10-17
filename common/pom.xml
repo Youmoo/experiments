@@ -38,6 +38,13 @@
             <version>1.9.2</version>
         </dependency>
 
+        <!--high performance reflection tools-->
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>reflectasm</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+
     </dependencies>
 
 

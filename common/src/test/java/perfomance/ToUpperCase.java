@@ -25,9 +25,7 @@ public class ToUpperCase {
     }
 
     public void doAction(Generified.Action<Void> action, String type) {
-        long time = -System.currentTimeMillis();
-        Generified.loop(100000, action);
-        System.out.println(type + " -> " + (time + System.currentTimeMillis()));
+        Generified.measure("uppercase", 1000, action);
     }
 
     Generified.Action<Void> action1 = new Generified.Action<Void>() {
