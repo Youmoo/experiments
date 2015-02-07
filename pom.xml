@@ -27,6 +27,9 @@
         <module>cobar</module>
         <module>spring-pom</module>
         <module>undertow</module>
+        <module>disruptor</module>
+        <module>koloboke</module>
+        <module>lang</module>
     </modules>
 
     <dependencies>

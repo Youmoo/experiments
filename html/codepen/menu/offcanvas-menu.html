@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--http://codepen.io/chriscoyier/pen/umEgv-->
+    <meta charset="UTF-8">
+    <title></title>
+    <style class="cp-pen-styles">* {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        min-height: 100%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .main-header {
+        background: linear-gradient(#3f94bf, #246485);
+        padding: 5px;
+        text-align: center;
+        color: white;
+        text-shadow: #222 0px -1px 1px;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        transition: all 0.3s ease;
+    }
+    .main-header a {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        color: white;
+        font-size: 32px;
+    }
+
+    .page-wrap {
+        float: right;
+        width: 100%;
+        transition: width 0.3s ease;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background: #3B3B3B;
+        overflow-y: auto;
+        transition: width 0.3s ease;
+    }
+    .main-nav a {
+        display: block;
+        background: linear-gradient(#3e3e3e, #383838);
+        border-top: 1px solid #484848;
+        border-bottom: 1px solid #2E2E2E;
+        color: white;
+        padding: 15px;
+    }
+    .main-nav a:hover, .main-nav a:focus {
+        background: linear-gradient(#484848, #383838);
+    }
+    .main-nav:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 34px;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    }
+
+    .content {
+        padding: 100px 20px 20px 20px;
+    }
+
+    .close-menu {
+        display: none;
+    }
+
+    #main-nav:target {
+        width: 20%;
+    }
+
+    #main-nav:target + .page-wrap {
+        width: 80%;
+    }
+    #main-nav:target + .page-wrap .open-menu {
+        display: none;
+    }
+    #main-nav:target + .page-wrap .close-menu {
+        display: block;
+    }
+    #main-nav:target + .page-wrap .main-header {
+        width: 80%;
+        left: 20%;
+    }
+    </style>
+</head>
+<body>
+<nav class="main-nav" id="main-nav">
+    <a href="#">This</a>
+    <a href="#">Little</a>
+    <a href="#">Piggy</a>
+    <a href="#">Went</a>
+    <a href="#">To</a>
+    <a href="#">Market</a>
+</nav>
+
+<div class="page-wrap">
+
+    <header class="main-header">
+        <a href="#main-nav" class="open-menu">
+            ☰
+        </a>
+        <a href="#" class="close-menu">
+            ☰
+        </a>
+
+        <h1>cssPanelMenu</h1>
+    </header>
+
+    <div class="content">
+
+        <p>It’s all about playing four quarters. I think we played well but the other team played well too. They took advantage of certain circumstances that arose. It’s a physical game.</p>
+
+        <p>We tried to capitalize on some mistakes they made. In the third quarter they ran some plays. They are very good at throwing the football. They have a good quarterback who is a real leader. There are no statistics for that.</p>
+
+        <p>We just need to show up, take things day by day, and prepare for the future. We’re looking at next week. We’re very optimistic. We’ll need to tighten up our game, make less mistakes, and stay focused.</p>
+
+        <p>There are 22 players out there. We’re 11 of them. This is a game played on grass. It’s full of intangibles. There are ups and downs. If we look at today’s champions, they are proven winners. They play football.</p>
+
+        <p>The groundwork has been laid so, now let’s look the future, make some good decisions, and take things to the next level.</p>
+
+        <p>It’s all about playing four quarters. I think we played well but the other team played well too. They took advantage of certain circumstances that arose. It’s a physical game.</p>
+
+        <p>We tried to capitalize on some mistakes they made. In the third quarter they ran some plays. They are very good at throwing the football. They have a good quarterback who is a real leader. There are no statistics for that.</p>
+
+        <p>We just need to show up, take things day by day, and prepare for the future. We’re looking at next week. We’re very optimistic. We’ll need to tighten up our game, make less mistakes, and stay focused.</p>
+
+        <p>There are 22 players out there. We’re 11 of them. This is a game played on grass. It’s full of intangibles. There are ups and downs. If we look at today’s champions, they are proven winners. They play football.</p>
+
+        <p>The groundwork has been laid so, now let’s look the future, make some good decisions, and take things to the next level.</p>
+
+    </div>
+
+</div>
+</body>
+</html>

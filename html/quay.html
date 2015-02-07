@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/quay.js"></script>
+</head>
+<body>
+<script>
+    var say_hello = function () {
+        console.log('Hello there!');
+    }
+
+    var q = new Quay(window);
+
+    q.capture({
+        'ctrl_x': say_hello
+    });
+</script>
+</body>
+</html>

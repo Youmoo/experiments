@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+        body {
+            background: #d2d2d2;
+            padding: 0;
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            font-size: 100px;
+            color: #B71427 ;
+        }
+
+        .L {
+            position: absolute;
+            top: 85px;
+            left: 140px;
+            text-shadow: 0 1px 0 #7D1935,
+            0 2px 0 #7D1935,
+            0 3px 0 #7D1935,
+            0 4px 0 #7D1935,
+            0 5px 0 #7D1935,
+            0 6px 0 #7D1935,
+            0 6px 3px rgba(1,1,1,0.80),
+            0 6px 10px rgba(1,1,1,0.20);
+        }
+
+        .ADING {
+            position: absolute;
+            top: 85px;
+            left: 285px;
+            text-shadow: 0 1px 0 #7D1935,
+            0 2px 0 #7D1935,
+            0 3px 0 #7D1935,
+            0 4px 0 #7D1935,
+            0 5px 0 #7D1935,
+            0 6px 0 #7D1935,
+            0 6px 3px rgba(1,1,1,0.80),
+            0 6px 10px rgba(1,1,1,0.20);
+        }
+
+        .outter {
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            width: 80px;
+            height: 80px;
+            border-radius: 80px 0 0 80px;
+            border-left: solid 5px #7D1935 ;
+            -webkit-animation-name:             spin;
+            -webkit-animation-duration:         1s;
+            -webkit-animation-iteration-count:  infinite;
+            -webkit-animation-timing-function:  linear;
+        }
+
+        .mid {
+            top: 15px;
+            left: 15px;
+            position: relative;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px 0 0 50px;
+            border-left: solid 5px #B71427;
+            -webkit-animation-name:             spin;
+            -webkit-animation-duration:         3s;
+            -webkit-animation-iteration-count:  infinite;
+            -webkit-animation-timing-function:  linear;
+        }
+
+        @-webkit-keyframes spin {
+            from { -webkit-transform:rotate(0deg) }
+            to { -webkit-transform:rotate(360deg) }
+        }
+        @-moz-keyframes spin {
+            from { -webkit-transform:rotate(0deg) }
+            to { -webkit-transform:rotate(360deg) }
+        }
+        @-o-keyframes spin {
+            from { -webkit-transform:rotate(0deg) }
+            to { -webkit-transform:rotate(360deg) }
+        }
+        @keyframes spin {
+            from { -webkit-transform:rotate(0deg) }
+            to { -webkit-transform:rotate(360deg) }
+        }
+    </style>
+</head>
+<body>
+<div class="L">L</div>
+<div class="outter">
+    <div class="mid">
+
+    </div>
+</div>
+<div class="ADING">ADING</div>
+</body>
+</html>

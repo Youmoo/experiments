@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" ,="" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style class="cp-pen-styles">.transition {
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    body {
+        font-family: Helvetica;
+        background-color: #27ae60;
+        color: #81e3aa;
+        -webkit-font-smoothing: antialiased;
+    }
+    a {
+        text-decoration: none !important;
+    }
+    header {
+        border-bottom: 2px solid #209150;
+    }
+    header ul {
+        margin-bottom: 0;
+    }
+    header h2 {
+        margin: 2rem 0;
+    }
+    header h2 .fa {
+        font-size: 26px;
+        position: relative;
+        top: -1px;
+    }
+    header h2 small {
+        color: #60db94;
+    }
+    .menuToggle {
+        margin-top: 1.6rem;
+        padding: 0 !important;
+        font-size: 30px;
+    }
+    .menuToggle button {
+        background-color: transparent;
+        border: 0;
+        color: #60db94;
+        padding: 0;
+        padding-left: 8px;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    .menuToggle button .fa-share {
+        font-size: 26px;
+    }
+    .menuToggle button:hover {
+        color: #81e3aa;
+    }
+    .menuToggle button:focus {
+        outline: 0;
+    }
+    .tooltip-arrow {
+        border-right-color: #209150 !important;
+    }
+    .tooltip-inner {
+        background-color: #209150;
+        color: #81e3aa;
+    }
+    .toggle {
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transform-origin: 50%;
+        -ms-transform-origin: 50%;
+        transform-origin: 50%;
+        font-size: 30px;
+        font-weight: 400;
+        padding-left: 8px;
+        color: #60db94;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    .toggle:hover,
+    .toggle:focus {
+        color: #81e3aa;
+    }
+    .menu-nav {
+        text-align: right;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        display: inline;
+        z-index: 99;
+    }
+    .menu-nav:after {
+        display: none;
+    }
+    .menu-nav.closed {
+        width: 0;
+        height: 0;
+    }
+    .menu-nav.closed ul {
+        opacity: 0;
+    }
+    .menu-nav.closed li {
+        margin-bottom: 1.375em;
+    }
+    .menu-nav a {
+        display: inline-block;
+        color: #60db94;
+        font-size: 24px;
+        font-weight: 400;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    .menu-nav a:hover {
+        color: #81e3aa;
+    }
+    .menu-nav ul {
+        position: absolute;
+        top: 8.3rem;
+        right: 1rem;
+        opacity: 1;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        z-index: 100;
+    }
+    .menu-nav ul .fa {
+        width: 38px;
+        text-align: center;
+    }
+    .menu-nav li {
+        padding: 0.25em 0;
+        margin-bottom: 0;
+        -webkit-transition: all .6s ease;
+        transition: all .6s ease;
+    }
+    .quoteView {
+        height: 150px;
+    }
+    .quoteView blockquote {
+        border-width: 4px;
+        border-color: #209150;
+        padding: 0 2rem;
+        margin-top: 100px;
+    }
+    .quoteView blockquote h3 {
+        margin-top: 0;
+    }
+    .quoteView blockquote h4 {
+        color: #60db94;
+    }
+    .randomBtn {
+        margin-bottom: 1.2rem;
+        display: inline;
+        overflow: hidden;
+    }
+    .randomBtn .btn {
+        position: relative;
+        border-radius: 0;
+        border: 0;
+        background-color: #209150;
+        color: #81e3aa;
+        font-weight: 200;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    .randomBtn .btn:hover {
+        background-color: #1d8047;
+    }
+    .randomBtn .btn:focus {
+        outline: 0;
+    }
+    .randomBtn .ripples {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: transparent;
+    }
+    .randomBtn .ripplesCircle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+    }
+    .randomBtn .ripples.is-active .ripplesCircle {
+        -webkit-animation: ripples 0.4s ease-in;
+        animation: ripples 0.4s ease-in;
+    }
+    @-webkit-keyframes ripples {
+        0% {
+            opacity: 0;
+        }
+        25% {
+            opacity: 1;
+        }
+        100% {
+            width: 200%;
+            padding-bottom: 200%;
+            opacity: 0;
+        }
+    }
+    @keyframes ripples {
+        0% {
+            opacity: 0;
+        }
+        25% {
+            opacity: 1;
+        }
+        100% {
+            width: 200%;
+            padding-bottom: 200%;
+            opacity: 0;
+        }
+    }
+    .sharing {
+        display: inline;
+        margin-left: 2rem;
+        position: relative;
+        top: 4px;
+    }
+    .sharing a {
+        padding-right: 1.2rem;
+        font-size: 26px;
+        color: #209150;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+    .sharing a:hover {
+        color: #1d8047;
+    }
+    @media (max-width: 991px) {
+        .quoteView {
+            height: 180px;
+        }
+    }
+    @media (max-width: 768px) {
+        .menu-nav:after {
+            display: block;
+            content: '';
+            position: fixed;
+            top: 100px;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #27ae60;
+            opacity: 1;
+            z-index: 1;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+    }
+    @media (max-width: 767px) {
+        header > li:first-child {
+            width: 75%;
+        }
+        header h2 {
+            font-size: 26px;
+            margin-bottom: 4.8rem;
+        }
+        header h2 .fa {
+            font-size: 22px;
+        }
+        header h2 small {
+            display: block;
+            position: absolute;
+            margin-top: 1rem;
+            font-size: 18px;
+        }
+        header .menuToggle {
+            font-size: 26px;
+            width: 25%;
+        }
+        header .menuToggle > div {
+            float: right;
+        }
+        header .fa-share {
+            font-size: 22px !important;
+        }
+        .tooltip {
+            display: none !important;
+        }
+        .toggle {
+            font-size: 26px;
+        }
+        .menu-nav ul {
+            top: 11.4rem;
+        }
+        .menu-nav ul .fa-info {
+            font-size: 24px !important;
+        }
+        .menu-nav ul .fa {
+            font-size: 20px;
+        }
+        .menu-nav.closed ul {
+            visibility: hidden;
+        }
+        .menu-nav.closed:after {
+            height: 0;
+            opacity: 0;
+        }
+        .quoteView {
+            height: 210px;
+        }
+        .quoteView blockquote {
+            margin-top: 60px;
+        }
+        .quoteView blockquote h3 {
+            font-size: 20px;
+        }
+        .quoteView blockquote h4 {
+            font-size: 15px;
+        }
+        .randomBtn .btn {
+            display: block;
+            width: 100%;
+            font-size: 24px;
+            padding: 2.4rem;
+        }
+        .sharing {
+            display: block;
+            margin-left: 0;
+            text-align: center;
+            top: 30px;
+        }
+        .sharing a {
+            padding: 1.4rem;
+            font-size: 36px;
+        }
+    }
+    </style>
+</head>
+<!--http://codepen.io/joshadamous/pen/wBMWqd-->
+<body ng-app="randomQuote">
+<div class="container">
+    <div class="row">
+
+        <!-- Header -->
+        <div class="col-xs-12">
+            <header>
+                <ul class="list-inline">
+                    <li>
+                        <h2><i class="fa fa-quote-left"></i> Quick Quote <small>Your Healthy Source of Inspiration</small></h2>
+                    </li>
+                    <li class="menuToggle pull-right">
+                        <div>
+                            <a class="toggle" href=""><i class="fa fa-bars"></i></a>
+                            <nav class="menu-nav closed">
+                                <ul class="list-unstyled">
+                                    <li><a href="/">About <i class="fa fa-info"></i></a></li>
+                                    <li><a href="/">Authors <i class="fa fa-users"></i></a></li>
+                                    <li><a href="/">Terms <i class="fa fa-file-text"></i></a></li>
+                                    <li><a href="/">Donate <i class="fa fa-heart"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </li>
+                </ul>
+            </header>
+        </div>
+
+        <!-- Content -->
+        <div class="col-xs-12">
+            <div ng-controller="QuoteCtrl">
+                <div class="row">
+                    <div class="col-md-9 col-md-offset-1 col-sm-7 col-sm-offset-2 col-xs-12">
+
+                        <div class="quoteView">
+                            <blockquote>
+                                <h3>{{currentQuote.quote}}</h3>
+                                <h4>{{currentQuote.author}}</h4>
+                            </blockquote>
+                        </div><!-- End of Quote View -->
+
+                        <div class="randomBtn">
+                            <button class="btn btn-primary btn-lg buttonBlue" ng-click="randomQuote()">Random<div class="ripples buttonRipples"><span class="ripplesCircle"></span></button>
+                        </div><!-- End of Random Button -->
+
+                        <ul class="list-inline sharing">
+                            <li><a href="/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="/"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="/" rel="tooltip" data-placement="right" title="Copy"><i class="fa fa-copy"></i></a></li>
+                        </ul><!-- End of Sharing -->
+
+                    </div><!-- End of Column -->
+                </div><!-- End of Row -->
+            </div><!-- End of Quote Controller -->
+        </div><!-- End of Column -->
+
+    </div><!-- End of Row -->
+</div><!-- End of Container -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script>
+    angular.module('randomQuote', [])
+            .controller('QuoteCtrl', function($scope) {
+                $scope.quotes = [
+                    {quote : "We can't solve problems at the same level of thinking we used to create them.", author : 'Albert Einstein'},
+                    {quote : "We are shaped by our thoughts, we become what we think. When the mind is pure, joy follows like a shadow that never leaves.", author : 'Buddha'},
+                    {quote : "You don't look out there for God, something in the sky, you look in you.", author : 'Alan Watts'},
+                    {quote : "Your attitude, not your aptitude, will determine your altitude.", author : 'Zig Ziglar'},
+                    {quote : "Happiness is when what you think, what you say, and what you do are in harmony.", author : 'Mahatma Ghandi'},
+                    {quote : "How people treat you is their karma, how you react is yours.", author : 'Wayne Dyer'},
+                    {quote : "Be a yardstick of quality. Some people aren't used to an environment where excellence is expected.", author : 'Steve Jobs'},
+                    {quote : "Today was good. Today was fun. Tomorrow is another one.", author : 'Dr. Seuss'},
+                    {quote : "Be who you are and say what you feel, because those who mind don't matter and those who matter don't mind.", author : 'Dr. Seuss'}
+                ];
+
+                $scope.currentQuote = _.first($scope.quotes);
+
+                $scope.randomQuote = function() {
+                    $scope.currentQuote = _.sample($scope.quotes);
+                };
+            });
+
+    $(function() {
+        $("[rel='tooltip']").tooltip();
+
+        $('#copyQuote').click(function(e){ e.preventDefault(); });
+
+    });
+
+    $('.toggle').click(function(e) {
+        $('.menu-nav').toggleClass('closed');
+        e.stopPropagation();
+        e.preventDefault();
+    });
+
+    $(window, document, undefined).ready(function() {
+
+        var $ripples = $('.ripples');
+
+        $ripples.on('click.Ripples', function(e) {
+
+            var $this = $(this),
+                    $offset = $this.parent().offset(),
+                    $circle = $this.find('.ripplesCircle');
+
+            var x = e.pageX - $offset.left,
+                    y = e.pageY - $offset.top;
+
+            $circle.css({
+                top: y + 'px',
+                left: x + 'px'
+            });
+
+            $this.addClass('is-active');
+
+        });
+
+        $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+            $(this).removeClass('is-active');
+        });
+
+    });
+    //@ sourceURL=pen.js
+</script>
+</body><!-- End of Body -->
+</html>

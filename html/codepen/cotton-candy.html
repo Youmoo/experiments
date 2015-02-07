@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: lightblue;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--http://codepen.io/Ahrengot/pen/OPMxKy-->
+<canvas></canvas>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script>
+    (function() {
+        var CottonCandyMachine, canvas, ctx, handleResize,
+                __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+        canvas = document.getElementsByTagName("canvas")[0];
+
+        ctx = canvas.getContext("2d");
+
+        handleResize = function() {
+            canvas.width = window.innerWidth;
+            return canvas.height = window.innerHeight;
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        handleResize();
+
+        CottonCandyMachine = (function() {
+            function CottonCandyMachine() {
+                this.render = __bind(this.render, this);
+                this.mouseX = window.innerWidth / 2;
+                this.mouseY = window.innerHeight / 2;
+                this.init();
+                this.render();
+            }
+
+            CottonCandyMachine.prototype.init = function() {
+                _.bindAll(this, "updateCursor");
+                return window.addEventListener("mousemove", this.updateCursor);
+            };
+
+            CottonCandyMachine.prototype.updateCursor = function(e) {
+                this.mouseX = e.pageX;
+                return this.mouseY = e.pageY;
+            };
+
+            CottonCandyMachine.prototype.getRandomNumbers = function() {
+                var num, _i, _ref, _results;
+                _results = [];
+                for (num = _i = 0, _ref = _.random(80); 0 <= _ref ? _i <= _ref : _i >= _ref; num = 0 <= _ref ? ++_i : --_i) {
+                    _results.push([_.random(this.mouseX - 100, this.mouseX + 100), _.random(this.mouseY - 100, this.mouseY + 100)]);
+                }
+                return _results;
+            };
+
+            CottonCandyMachine.prototype.render = function() {
+                var set, x, y, _i, _len, _ref;
+                x = _.random(0, window.innerWidth);
+                y = _.random(0, window.innerHeight);
+                ctx.beginPath();
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = "rgba(" + (_.random(128, 240)) + ", " + (_.random(128, 230)) + ", " + (_.random(128, 210)) + ",0.1)";
+                ctx.moveTo(this.mouseX, this.mouseY);
+                _ref = this.getRandomNumbers();
+                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                    set = _ref[_i];
+                    ctx.lineTo(set[0], set[1]);
+                }
+                ctx.stroke();
+                return requestAnimationFrame(this.render);
+            };
+
+            return CottonCandyMachine;
+
+        })();
+
+        new CottonCandyMachine();
+
+    }).call(this);
+
+    //@ sourceURL=pen.js
+</script>
+</body>
+</html>

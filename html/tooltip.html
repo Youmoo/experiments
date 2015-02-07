@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .tooltip .tip {
+            display: none;
+            border: 1px solid crimson;
+            border-radius:3px ;
+            padding: 1px 6px;
+            white-space: nowrap;
+            background: #fff;
+            font-size: small;
+            font-weight: normal;
+        }
+
+        .tooltip:hover {
+            position: relative;
+        }
+
+        .tooltip:hover .tip {
+            display: block;
+            position: absolute;
+            top: -150%;
+            left: 50%;
+            z-index: 100;
+        }
+
+        .tooltip:hover .tip::after {
+            content: "";
+            position: absolute;
+            bottom: -50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8.7px 5px 0 5px;
+            border-color: #007bff transparent transparent transparent;
+        }
+    </style>
+</head>
+<body>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="tooltip" style="border: 1px solid purple">
+    你好好你你好.
+    <div class="tip">问候语</div>
+</div>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th class="tooltip">First Name<div class="tip">问候语/div></th>
+        <th class="tooltip">Last Name<div class="tip">问候语</div></th>
+        <th class="tooltip">Username<div class="tip">问候语</div></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

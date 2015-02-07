@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: #306785;
+        }
+        #clickPulse {
+            display: block;
+            background-color: #A9E1B2;
+            position: absolute;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            transform: scale(0.0);
+        }
+
+        /*animation effect*/
+        #clickPulse.animate {
+            animation: pulse 0.4s linear;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+                box-shadow: 0 0 0 rgba(255,255,255,1);
+            }
+
+            50% {
+                opacity: 0.75;
+                box-shadow: 0 0 0 6px rgba(169,255,178,0.4),
+                0 0 0 12px rgba(169,255,178,0.8);
+            }
+
+            100% {
+                opacity: 0;
+                box-shadow: 0 0 0 10px rgba(169,255,178,0.1),
+                0 0 0 25px rgba(169,255,178,0.2);
+                transform: scale(2);
+            }
+        }
+    </style>
+</head>
+<body>
+<!--http://codepen.io/daxhansen/pen/LEpqGd-->
+<div id="mousePosition"></div>
+<span id="clickPulse"></span>
+<script>
+    var mousePos = document.getElementById('mousePosition');
+
+    var clickPulse = document.getElementById('clickPulse');
+
+    document.addEventListener('click', getMousePos, false);
+
+    function getMousePos(e) {
+        var xPosition = e.clientX;
+        var yPosition = e.clientY;
+
+        clickPulse.style.left = xPosition + 'px';
+        clickPulse.style.top = yPosition + 'px';
+        clickPulse.setAttribute("class", "animate");
+        setTimeout(function(){
+            clickPulse.setAttribute("class", "");
+        }, 400)
+
+    }
+</script>
+</body>
+</html>

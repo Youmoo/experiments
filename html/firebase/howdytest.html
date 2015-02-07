@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src='firebase.js'></script>
+</head>
+<body>
+<div id='messagesDiv'></div>
+<input type='text' id='nameInput' placeholder='Name'>
+<input type='text' id='messageInput' placeholder='Message'>
+<script>
+
+    var myDataRef = new Firebase('https://howdytest.firebaseio.com/');
+    myDataRef.on('value', function (snapshot) {
+//        debugger;
+        var message = snapshot.val();
+        console.log(message)
+    });
+</script>
+</body>
+</html>
