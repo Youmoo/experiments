@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--使用css装饰select  http://codepen.io/gnclmorais/pen/cHkqt-->
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .select-style {
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            width: 120px;
+            border-radius: 3px;
+            overflow: hidden;
+            background-color: #fff;
+            background: #fff url("arrowdown.gif") no-repeat 90% 50%; /*90%相当于右边距，50%表示居中*/
+        }
+
+        .select-style select {
+            padding: 5px 8px;
+            width: 130%;
+            border: none;
+            box-shadow: none;
+            background-color: transparent;
+            background-image: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .select-style select:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div class="select-style">
+    <select>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+    </select>
+</div>
+</body>
+</html>

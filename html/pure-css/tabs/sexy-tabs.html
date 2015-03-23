@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--http://codepen.io/MightyShaban/pen/zLykK-->
+    <meta charset="UTF-8">
+    <title></title>
+    <style class="cp-pen-styles">@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+
+    .tab {
+        padding-top: 50px;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        width: 70%;
+        margin: 0 auto;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.5;
+        font-weight: 300;
+        color: #888;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .tabs {
+        display: table;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        width: 100%;
+    }
+
+    .tabs li {
+        float: left;
+        line-height: 38px;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+    }
+
+    .tabs a {
+        background-color: #eff0f2;
+        border-bottom: 1px solid #fff;
+        color: #888;
+        font-weight: 500;
+        display: block;
+        letter-spacing: 0;
+        outline: none;
+        padding: 0 20px;
+        text-decoration: none;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        border-bottom: 2px solid #87d3b7;
+    }
+
+    .tabs_item {
+        display: none;
+        padding: 30px 0;
+    }
+
+    .tabs_item h4 {
+        font-weight: bold;
+        color: #87d3b7;
+        font-size: 20px;
+    }
+
+    .tabs_item img {
+        width: 200px;
+        float: left;
+        margin-right: 30px;
+    }
+
+    .tabs_item:first-child {
+        display: block;
+    }
+
+    .current a {
+        color: #fff;
+        background: #87d3b7;
+    }
+    </style>
+</head>
+<body>
+<div class="tab">
+
+    <ul class="tabs">
+        <li><a href="#">Tab01</a></li>
+        <li><a href="#">Tab02</a></li>
+        <li><a href="#">Tab03</a></li>
+    </ul>
+    <!-- / tabs -->
+
+    <div class="tab_content">
+
+        <div class="tabs_item">
+            <img src="http://d13yacurqjgara.cloudfront.net/users/5411/screenshots/1413345/wellv2.png">
+            <h4>Tab 01 Neque ipsum dolor.</h4>
+
+            <p>Consectetur adipisicing elit. Neque, repellat facilis totam ab eos distinctio sint atque maiores!
+                Dignissimos, molestiae, rem accusantium iure vitae voluptatum voluptas repudiandae deserunt dolore quis!
+                Quisquam mollitia eius sed.</p>
+        </div>
+        <!-- / tabs_item -->
+
+        <div class="tabs_item">
+            <img class="alignleft max_width" alt="tabs_shortcode2"
+                 src="http://d13yacurqjgara.cloudfront.net/users/424765/screenshots/1412407/ezyinsights.jpg">
+            <h4>Tab02 Maiores, suscipit</h4>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, suscipit, eaque asperiores neque
+                numquam nam possimus dolorem ipsa aspernatur reiciendis?</p>
+        </div>
+        <!-- / tabs_item -->
+
+        <div class="tabs_item">
+            <img src="http://d13yacurqjgara.cloudfront.net/users/347667/screenshots/1412641/untitled-1.jpg">
+            <h4>Tab03</h4>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, excepturi, minima, corporis deserunt
+                quia quae sit officiis labore inventore autem a delectus consequuntur voluptatem modi eligendi similique
+                sed nam vitae.</p>
+        </div>
+        <!-- / tabs_item -->
+
+    </div>
+    <!-- / tab_content -->
+</div>
+<!-- / tab -->
+<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        (function ($) {
+            $('.tab ul.tabs').addClass('active').find('> li:eq(0)').addClass('current');
+
+            $('.tab ul.tabs li a').click(function (g) {
+                var tab = $(this).closest('.tab'),
+                        index = $(this).closest('li').index();
+
+                tab.find('ul.tabs > li').removeClass('current');
+                $(this).closest('li').addClass('current');
+
+                tab.find('.tab_content').find('div.tabs_item').not('div.tabs_item:eq(' + index + ')').slideUp();
+                tab.find('.tab_content').find('div.tabs_item:eq(' + index + ')').slideDown();
+
+                g.preventDefault();
+            } );
+        })(jQuery);
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--http://codepen.io/ndne/pen/jqDIG-->
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        @import url('http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
+        @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800');
+        @import url('http://fonts.googleapis.com/css?family=Montserrat:400,700');
+        @import url('http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+
+        h1 {
+            font: 100 4em/1em Lato;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        body {
+            font: 300 16px/1.5em "Open Sans";
+        }
+
+        .footnote {
+            margin: 40px 0 0 20px;
+            font-weight: 500;
+            font-size: 0.75em;
+            color: #a0a0a0;
+        }
+
+        form {
+            width: 400px;
+            padding: 80px 0 0 40px;
+        }
+
+        input.button {
+            box-sizing: border-box;
+            border: 0;
+            outline: 0;
+            height: 48px;
+        }
+
+        .button {
+            display: inline-block;
+            font: 100 1.2em/16px "Lato";
+            letter-spacing: 0.75px;
+            text-transform: uppercase;
+            text-align: center;
+            height: 16px;
+            margin: 8px 0 8px 8px;
+            padding: 16px 24px;
+            background: #808080;
+            color: white;
+            border-radius: 3px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+            transition: background-color .1s, color .2s, box-shadow .3s;
+        }
+
+        .button:hover {
+            background: #404040;
+            color: white;
+            cursor: pointer;
+            cursor: hand;
+            box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.65);
+        }
+
+        .formInput {
+            position: relative;
+            font: 300 1em/48px "Open Sans";
+            margin: 0 0 8px;
+            padding: 0;
+            border-bottom: 1px solid #c0c0c0;
+            border-radius: 4px;
+            overflow: hidden;
+            color: #505050;
+        }
+
+        .formInput:hover {
+            color: black;
+        }
+
+        .formInput i {
+            display: block;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 48px;
+            height: 47px;
+            line-height: 48px;
+            text-align: center;
+            /*background-color: #e0e0e0;
+            box-shadow: 1px 1px 1px rgba(0,0,0,0.25);*/
+            font-size: 1em;
+            transition: box-shadow .2s, color .3s, background-color .4s;
+        }
+
+        .formInput input {
+            box-sizing: border-box;
+            z-index: 1;
+            display: block;
+            position: relative;
+            top: 0;
+            left: 0;
+            float: left;
+            font-size: 1em;
+            font: inherit;
+            border: 0;
+            margin: 0;
+            padding: 0 4px 0 56px;
+            border: 1px solid transparent;
+            border-radius: inherit;
+            width: 100%;
+            height: 47px;
+            line-height: 47px;
+            background: transparent;
+            color: inherit;
+            transition: border-color .2s, color .2s, background-color .4s;
+        }
+
+        .formInput.hasTextarea {
+            line-height: 24px;
+            height: 191px;
+        }
+
+        .formInput.hasTextarea i {
+            border-radius: 0 0 3px;
+        }
+
+        .formInput textarea {
+            box-sizing: border-box;
+            resize: none;
+            z-index: 1;
+            display: block;
+            position: relative;
+            top: 0;
+            left: 0;
+            float: left;
+            font-size: 1em;
+            font: inherit;
+            border: 1px solid transparent;
+            border-radius: inherit;
+            margin: 0;
+            padding: 12px 4px 6px 56px;
+            width: 100%;
+            height: 100%;
+            line-height: 24px;
+            background: transparent;
+            color: inherit;
+            transition: border-color .2s, color .2s, background-color .4s;
+        }
+
+        .formInput input[disabled]:active, .formInput input[disabled]:focus,
+        .formInput input[disabled]:hover {
+            border-color: transparent;
+            background-color: transparent;
+        }
+
+        .formInput input:active, .formInput input:focus,
+        .formInput textarea:active, .formInput textarea:focus,
+        .formInput.dateSelector:hover input {
+            border-color: #b0b0b0;
+            outline: none;
+            color: black;
+            background-color: rgba(0, 0, 0, 0.025);
+        }
+
+        .formInput.radioBtn {
+            padding-bottom: 24px;
+        }
+
+        .formInput.radioBtn .formInputChild {
+            font: 300 1em/28px "Open Sans";
+        }
+
+        .formInput.radioBtn input {
+            width: 14px;
+            height: 14px;
+            padding: 0;
+            margin: 7px 9px;
+            position: relative;
+        }
+
+        .formInput.radioBtn label {
+            font-size: 0.95em;
+        }
+
+        .formInput .formInputDescription {
+            position: relative;
+            padding: 0 0 0 56px;
+        }
+
+        .formInput .formInputChild {
+            font: 300 1em/48px "Open Sans";
+            position: relative;
+            padding: 0 0 0 56px;
+        }
+
+        .formInput.checkboxBtn {
+
+        }
+
+        .formInput.checkboxBtn input {
+            width: 14px;
+            height: 14px;
+            margin: 17px 16px 16px;
+            padding: 0;
+        }
+
+        .formInput.checkboxBtn i {
+            display: none;
+        }
+
+        .formInput.dateSelector {
+            transition: background-color .2s;
+        }
+
+        .calendar {
+            position: relative;
+            display: block;
+            font: 500 0.8em/30px "Open Sans";
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: default;
+            padding: 0 0 0 57px;
+            color: #404040;
+        }
+
+        .calendar .view {
+            position: relative;
+            float: left;
+        }
+
+        .calendar .nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .calendar .nav .btn {
+            position: absolute;
+            display: block;
+            z-index: 1;
+            cursor: pointer;
+            cursor: hand;
+            width: 32px;
+            height: 32px;
+            line-height: 31px;
+            top: 0;
+            left: auto;
+            transition: opacity .5s;
+            border-radius: 4px;
+        }
+
+        .calendar .nav .btn:hover {
+            color: #808080;
+            background: #e0e0e0;
+            border-color: #606060;
+        }
+
+        .calendar .nav .prev {
+            left: 0;
+        }
+
+        .calendar .nav .prev-year {
+            opacity: 0;
+            left: 32px;
+        }
+
+        .calendar .nav:hover .prev-year {
+            opacity: 1;
+        }
+
+        .calendar .nav .next-year {
+            opacity: 0;
+            right: 32px !important;
+        }
+
+        .calendar .nav:hover .next-year {
+            opacity: 1;
+        }
+
+        .calendar .nav .next {
+            right: 0;
+        }
+
+        .calendar .head {
+        }
+
+        .calendar .head .title {
+            font: 300 1.2em/32px "Open Sans";
+            position: relative;
+            float: left;
+            width: 100%;
+            text-align: center;
+        }
+
+        .calendar .head span {
+            cursor: pointer;
+        }
+
+        .calendar .row {
+            clear: both;
+        }
+
+        .calendar .row.th {
+            font-weight: 700;
+            text-transform: uppercase;
+            height: 40px;
+        }
+
+        .calendar .row.th .C {
+            border-bottom: 1px solid #c0c0c0;
+            border-radius: 0;
+        }
+
+        .calendar .C {
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            float: left;
+            transition: background-color .05s, color .05s;
+            border-radius: 50%;
+        }
+
+        .calendar .C.mn {
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        .calendar .C.mn:hover {
+            background: #565656;
+            color: white;
+        }
+
+        .calendar .C.g {
+            color: #a0a0a0;
+            font-weight: 300;
+        }
+
+        .calendar .C.slctd {
+            background: #202020;
+            color: white;
+            font-size: 1.15em;
+            font-weight: 300;
+        }
+
+        .calendar .C.today {
+            font-weight: 900;
+            font-size: 1.3em;
+        }
+
+        .calendar .selected {
+            margin: 0 0 0 64px;
+            float: right;
+            text-align: center;
+            width: 280px;
+        }
+
+        .calendar .selected .desc {
+            border-bottom: 1px solid #c0c0c0;
+        }
+
+        .calendar .selected .val {
+            padding: 0 8px;
+            background: #f0f0f0;
+            color: #808080;
+        }
+
+        .calendar .dayArea {
+            position: relative;
+            width: 280px;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .calendar .dayArea .mArea {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <h1>Date picker</h1>
+
+    <p>A demonstration of a custom Javascript date picker. Click on the birth date field to toggle.</p>
+
+    <div class='formInput'>
+        <i class='fa fa-user'></i>
+        <input type='text' name='name' placeholder='Name'/>
+    </div>
+    <div class='formInput'>
+        <i class='fa fa-envelope-o'></i>
+        <input type='text' name='email' placeholder='Email'/>
+    </div>
+    <div class='formInput dateSelector'>
+        <i class='fa fa-calendar-o'></i>
+        <input type='text' name='birthday' id='hbdsdf' placeholder='Birth date'/>
+    </div>
+    <input type="submit" class='button' value='Submit'>
+
+    <div class='footnote'>Resources used: icons/font awesome, fonts/google web fonts</div>
+</form>
+<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.js"></script>
+
+<script>
+
+    var monthNames = {
+        0: "January",
+        1: "February",
+        2: "March",
+        3: "April",
+        4: "May",
+        5: "June",
+        6: "July",
+        7: "August",
+        8: "September",
+        9: "October",
+        10: "November",
+        11: "December"
+    }
+
+    function Cal() {
+        this.date = {};
+        this.markup = {};
+        this.date.today = new Date();
+        this.date.today = new Date(this.date.today.getUTCFullYear(), this.date.today.getUTCMonth(), this.date.today.getUTCDate());
+        this.date.browse = new Date();
+        this.markup.row = "row";
+        this.markup.cell = "cell";
+        this.markup.inactive = "g";
+        this.markup.currentMonth = "mn";
+        this.markup.slctd = "slctd";
+        this.markup.today = "today";
+        this.markup.dayArea = "dayArea";
+        this.elementTag = 'calendar';
+        this.targetInput = '#hbdsdf';
+        this.init = false;
+        this.buildDOM();
+        this.selectDate(this.date.today.getFullYear(), this.date.today.getMonth(), this.date.today.getDate())
+        this.constructDayArea();
+        this.updateInput('Birth date', '', '');
+
+
+        t = this;
+        $(document).ready(function () {
+            $(document).click(function (ms) {
+                e = $('.' + t.elementTag + ' .view');
+                eco = e.offset();
+                if (ms.pageX < eco.left || ms.pageX > eco.left + e.width() || ms.pageY < eco.top || ms.pageY > eco.top + e.height()) {
+                    if (!t.init) t.hide(300);
+                }
+            });
+            $('.' + t.elementTag).on('click', '.next-month', function () {
+                t.setMonthNext();
+            });
+            $('.' + t.elementTag).on('click', '.prev-month', function () {
+                t.setMonthPrev();
+            });
+            $('.' + t.elementTag).on('click', '.next-year', function () {
+                t.setYearNext();
+            });
+            $('.' + t.elementTag).on('click', '.prev-year', function () {
+                t.setYearPrev();
+            });
+
+            $('.' + t.elementTag).on('click', '.jump-to-next-month', function () {
+                t.setMonthNext();
+            });
+            $('.' + t.elementTag).on('click', '.jump-to-previous-month', function () {
+                t.setMonthPrev();
+            });
+
+            $('.' + t.elementTag).on('click', '.' + t.markup.currentMonth, function () {
+                d = t.selectDate(t.date.browse.getUTCFullYear(), t.date.browse.getUTCMonth(), $(this).html());
+                t.hide(300);
+            });
+
+            $('.' + t.elementTag).on('click', '.title', function () {
+                t.date.browse = new Date(t.date.today.getTime());
+                t.constructDayArea(false);
+            });
+
+            $(t.targetInput).focus(function () {
+                t.show(100);
+                $(this).blur();
+            });
+
+        });
+
+
+    }
+    Cal.prototype.wd = function (wd) {
+        if (wd == 0) return 7
+        return wd
+    }
+    Cal.prototype.buildDOM = function () {
+        html = "<div class='clear " + this.elementTag + "'>\n<div class='view'>\n<div class='head'>\n<div class='title'><span class='m'></span> <span class='y'></span></div>\n</div>\n";
+        html += "<div class='row th'>\n<div class='C'>M</div>\n<div class='C'>T</div>\n<div class='C'>W</div>\n<div class='C'>T</div>\n<div class='C'>F</div>\n<div class='C'>S</div>\n<div class='C'>S</div>\n</div>\n<div class='" + this.markup.dayArea + "'>\n";
+        html += "</div>\n\n<div class='row nav'>\n\n<i class='btn prev prev-year fa fa-fast-backward'></i>\n<i class='btn prev prev-month fa fa-play fa-flip-horizontal'></i>\n<i class='btn next next-month fa fa-play'></i>\n<i class='btn next next-year fa fa-fast-forward'></i>\n</div>\n</div>\n</div>\n";
+        $(html).insertAfter(this.targetInput);
+        $(this.targetInput).css('cursor', 'pointer');
+        this.hide(0);
+    }
+    Cal.prototype.constructDayArea = function (flipDirection) {
+        newViewContent = "";
+        wd = this.wd(this.date.browse.getUTCDay());
+        d = this.date.browse.getUTCDate();
+        m = this.date.browse.getUTCMonth();
+        y = this.date.browse.getUTCFullYear();
+
+        monthBgnDate = new Date(y, m, 1);
+        monthBgn = monthBgnDate.getTime();
+        monthEndDate = new Date(this.getMonthNext().getTime() - 1000 * 60 * 60 * 24);
+        monthEnd = monthEndDate.getTime();
+
+        monthBgnWd = this.wd(monthBgnDate.getUTCDay());
+        itrBgn = monthBgnDate.getTime() - (monthBgnWd - 1) * 1000 * 60 * 60 * 24;
+        /*itrEnd = monthEnd;
+         i = 0;
+         while(this.wd(new Date(itrEnd).getUTCDay())!=7) {
+         itrEnd += 1000*60*60*24;
+         i = i+1;
+         if(i>10) break;
+         }*/
+
+
+        i = 1;
+        n = 0;
+        dayItr = itrBgn;
+        newViewContent += "<div class='" + this.markup.row + "'>\n";
+        while (n < 42) {
+            cls = new Array("C", this.markup.cell);
+            if (dayItr <= monthBgn) cls.push(this.markup.inactive, "jump-to-previous-month");
+            else if (dayItr >= monthEnd + 1000 * 60 * 60 * 36) cls.push(this.markup.inactive, "jump-to-next-month");
+            else cls.push(this.markup.currentMonth);
+            if (dayItr == this.date.slctd.getTime() + 1000 * 60 * 60 * 24) cls.push(this.markup.slctd);
+            if (dayItr == this.date.today.getTime() + 1000 * 60 * 60 * 24) cls.push(this.markup.today);
+
+            date = new Date(dayItr);
+            newViewContent += "<div class='" + cls.join(" ") + "'>" + date.getUTCDate() + "</div>\n";
+            i += 1;
+            if (i > 7) {
+                i = 1;
+                newViewContent += "</div>\n<div class='" + this.markup.row + "'>\n";
+            }
+            n += 1;
+            dayItr = dayItr + 1000 * 60 * 60 * 24;
+        }
+        newViewContent += "</div>\n";
+
+
+        this.changePage(newViewContent, flipDirection);
+        $('.' + this.elementTag + ' .title .m').html(monthNames[m]);
+        $('.' + this.elementTag + ' .title .y').html(y);
+        return newViewContent;
+    }
+    Cal.prototype.changePage = function (newPageContent, flipDirection) {
+
+        multiplier = -1;
+        mark = "-";
+        if (flipDirection) {
+            multiplier = 1;
+            mark = "+";
+        }
+
+        oldPage = $('.' + this.elementTag + ' .' + this.markup.dayArea + ' .mArea');
+        newPage = $("<div class='mArea'></div>").css('left', (-1 * multiplier * 224) + 'px').html(newPageContent);
+        $('.' + this.elementTag + ' .' + this.markup.dayArea).append(newPage);
+
+        $('.mArea').stop(1, 1).animate({
+            left: mark + "=224px"
+        }, 300, function () {
+            oldPage.remove();
+        });
+    }
+    Cal.prototype.selectDate = function (y, m, d) {
+        this.date.slctd = new Date(y, m, d);
+        this.updateInput(y, m, d);
+        this.constructDayArea(false);
+        return this.date.slctd;
+    }
+    Cal.prototype.updateInput = function (y, m, d) {
+        if (m == '') m = '';
+        else m = monthNames[m];
+        $(this.targetInput).val(y + " " + m + " " + d);
+    }
+    Cal.prototype.getMonthNext = function () {
+        m = this.date.browse.getUTCMonth();
+        y = this.date.browse.getUTCFullYear();
+        if (m + 1 > 11) return new Date(y + 1, 0);
+        else return new Date(y, m + 1);
+    }
+    Cal.prototype.getMonthPrev = function () {
+        m = this.date.browse.getUTCMonth();
+        y = this.date.browse.getUTCFullYear();
+        if (m - 1 < 0) return new Date(y - 1, 11);
+        else return new Date(y, m - 1);
+    }
+    Cal.prototype.setMonthNext = function () {
+        m = this.date.browse.getUTCMonth();
+        y = this.date.browse.getUTCFullYear();
+        if (m + 1 > 11) {
+            this.date.browse.setUTCFullYear(y + 1);
+            this.date.browse.setUTCMonth(0);
+        } else {
+            this.date.browse.setUTCMonth(m + 1);
+        }
+        this.constructDayArea(false);
+    }
+    Cal.prototype.setMonthPrev = function () {
+        m = this.date.browse.getUTCMonth();
+        y = this.date.browse.getUTCFullYear();
+        if (m - 1 < 0) {
+            this.date.browse.setUTCFullYear(y - 1);
+            this.date.browse.setUTCMonth(11);
+        } else {
+            this.date.browse.setUTCMonth(m - 1);
+        }
+        this.constructDayArea(true);
+    }
+    Cal.prototype.setYearNext = function () {
+        y = this.date.browse.getUTCFullYear();
+        this.date.browse.setUTCFullYear(y + 1);
+        this.constructDayArea(false);
+    }
+    Cal.prototype.setYearPrev = function () {
+        y = this.date.browse.getUTCFullYear();
+        this.date.browse.setUTCFullYear(y - 1);
+        this.constructDayArea(true);
+    }
+    Cal.prototype.hide = function (duration) {
+        $('.' + this.elementTag + ' .view').slideUp(duration);
+    }
+    Cal.prototype.show = function (duration) {
+        t = this;
+        t.init = true;
+        $('.' + this.elementTag + ' .view').slideDown(duration, function () {
+            t.init = false;
+        });
+    }
+
+    var c = new Cal();
+</script>
+</body>
+</html>
