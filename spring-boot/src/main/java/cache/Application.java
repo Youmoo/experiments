@@ -35,6 +35,9 @@ public class Application {
         }
     }
 
+    /**
+     * cache容器配置
+     */
     @Bean
     public CacheManager cacheManager() {
         return new ConcurrentMapCacheManager("books");

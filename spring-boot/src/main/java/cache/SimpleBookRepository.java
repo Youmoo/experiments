@@ -3,6 +3,10 @@ package cache;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+/**
+ * @Cacheable 也可应用于类层级，意味着该类的所有方法都可缓存
+ * @xml <cache:annotation-driven />
+ */
 @Component
 public class SimpleBookRepository implements BookRepository {
 
