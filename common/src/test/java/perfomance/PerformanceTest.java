@@ -6,7 +6,7 @@ import org.junit.Test;
  * 比对一下性能
  * 结果分析：new和gen结果相当,gen略快，refl慢了1到8倍
  *
- * @autor youmoo
+ * @author youmoo
  * @since 2014-05-08 下午5:25
  */
 public class PerformanceTest {

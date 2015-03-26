@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @see http://projects.spring.io/spring-boot/
  * @since 2014-09-03 上午9:46
  */

@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.Date;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-05-10 上午11:50
  */
 public class AppTest {

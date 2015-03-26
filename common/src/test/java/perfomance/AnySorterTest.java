@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 排序测试
  *
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-17 下午4:43
  */
 public class AnySorterTest {

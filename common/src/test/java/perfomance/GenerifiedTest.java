@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-05-05 上午10:52
  */
 public class GenerifiedTest {

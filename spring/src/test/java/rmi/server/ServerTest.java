@@ -3,7 +3,7 @@ package rmi.server;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-06 5:40 PM
  */
 public class ServerTest {

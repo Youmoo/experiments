@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 允许对String,Number,Date类型等进行排序
  *
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-17 下午4:38
  */
 public class AnySorter {

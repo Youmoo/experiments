@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import java.util.Date;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-08 10:59 PM
  */
 public class DemoProcessor implements BeanPostProcessor {

@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 /**
  * aop用来动态设置数据源所在key
  *
- * @autor youmoo
+ * @author youmoo
  * @since 2014-03-30 2:36 PM
  */
 public class DynamicDsAspect implements MethodBeforeAdvice {

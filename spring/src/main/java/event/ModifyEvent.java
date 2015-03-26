@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationEvent;
 import java.util.Date;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-08-29 下午5:39
  */
 public class ModifyEvent extends ApplicationEvent {

@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 /**
  * 动态数据源
  *
- * @autor youmoo
+ * @author youmoo
  * @since 2014-03-30 2:25 PM
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {

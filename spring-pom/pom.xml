@@ -12,13 +12,14 @@
     <groupId>com.github.youmoo</groupId>
     <artifactId>spring-pom</artifactId>
     <properties>
-        <spring.version>3.2.4.RELEASE</spring.version>
+        <!--<spring.version>3.2.4.RELEASE</spring.version>-->
+        <spring.version>4.1.5.RELEASE</spring.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring</artifactId>
+            <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -39,6 +40,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>

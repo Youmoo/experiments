@@ -16,7 +16,7 @@ import static util.NumberUtils.*;
 /**
  * 函数式，仿js中的Array.prototype并将一些常用操作泛化
  *
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-15 下午8:19
  */
 public class Generified {

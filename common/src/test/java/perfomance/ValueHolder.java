@@ -3,7 +3,7 @@ package perfomance;
 import java.util.Date;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-17 下午4:43
  */
 public class ValueHolder {

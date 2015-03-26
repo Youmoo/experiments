@@ -1,7 +1,7 @@
 package support;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-03-30 2:27 PM
  */
 public class CustomerContextHolder {

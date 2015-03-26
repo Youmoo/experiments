@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-08-29 下午5:41
  */
 @Component

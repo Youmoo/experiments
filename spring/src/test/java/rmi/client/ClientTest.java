@@ -6,7 +6,7 @@ import rmi.server.HelloRmiService;
 import rmi.server.User;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-06 5:41 PM
  */
 public class ClientTest {

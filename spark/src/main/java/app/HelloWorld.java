@@ -4,7 +4,7 @@ import static spark.Spark.get;
 import static spark.Spark.stop;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-08-25 上午10:01
  */
 public class HelloWorld {

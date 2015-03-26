@@ -7,7 +7,7 @@ import support.SpringUtil;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-09-03 下午1:07
  */
 @Component

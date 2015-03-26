@@ -1,7 +1,7 @@
 package functional;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-04-16 下午5:23
  */
 public interface Predictor<E> {

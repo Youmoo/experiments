@@ -3,7 +3,7 @@ package event;
 import support.SpringUtil;
 
 /**
- * @autor youmoo
+ * @author youmoo
  * @since 2014-08-29 下午5:46
  */
 public class App {
